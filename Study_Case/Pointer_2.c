@@ -7,7 +7,7 @@ int main(void)
 {
     int *p = POINTER();
     int po = *p;
-    printf("%p\n",p);
+    printf("%p__",p);
     printf("%d\n",po);
     system("pause");
     return 0;
