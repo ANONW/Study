@@ -10,7 +10,9 @@ int main(void)
     while (1)
     {
         printf("\n请输入一个度数：");
-        scanf("%lf", &a_angle);
+        int i = scanf("%lf", &a_angle);
+        if (i == 0)
+            break;
         ANGLE(a_angle);
     }
 
@@ -19,20 +21,26 @@ int main(void)
 
 void ANGLE(double angle)
 {
-    if (angle >= 0)
+    if (angle < 360 && angle >= 0)
     {
-        while (angle >= 360)
-        {
-            angle -= CIRCUMFERENCE;
-        }
-        printf("\n常用等终边角的度数 = %.3lf\n", angle);
     }
     else
     {
-        while (angle <= 360)
+        for (;;)
         {
-            angle += CIRCUMFERENCE;
+            if (angle < 0)
+            {
+                angle += CIRCUMFERENCE;
+                if (angle < 360 && angle >= 0)
+                    break;
+            }
+            else
+            {
+                angle -= CIRCUMFERENCE;
+                if (angle < 360 && angle >= 0)
+                    break;
+            }
         }
-        printf("\n常用等终边角的度数 = %.3lf\n", angle);
     }
+    printf("\n常用等终边角的度数 = %.3lf\n", angle);
 }
